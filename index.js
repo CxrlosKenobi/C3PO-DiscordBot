@@ -21,6 +21,19 @@ client.on('ready', () => {
         }
     })
 
+    command(client, 'embed', (message) => {
+        // const logo = ''
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Embed Test')
+            .setDescription('This is a test embed!')
+            .setColor(0x00ff00)
+            .setAuthor(message.author.username)
+            // .setImage(logo)
+            .setFooter('This is a footer!')
+        
+        message.channel.send(embed)
+    })
+
     command(client, ['status'], message => {
         const content = message.content.replace('%status ', '')
 
