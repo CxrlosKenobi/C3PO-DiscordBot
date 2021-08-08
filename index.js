@@ -32,8 +32,8 @@ client.on('ready', async () => {
 
     client.user.setPresence({
         activity: {
-            name: 'RAS UdeC',
-            type: 0,
+            name: '%RAS UdeC',
+            type: 'LISTENING',
         },
     })
 
