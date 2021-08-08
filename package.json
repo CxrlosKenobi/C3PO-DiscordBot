@@ -19,6 +19,7 @@
   "homepage": "https://github.com/RAS-UDEC/Discord-assets#readme",
   "dependencies": {
     "canvas": "^2.8.0",
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "help": "^3.0.2"
   }
 }
