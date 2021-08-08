@@ -8,8 +8,4 @@ module.exports = (client) => {
         const channel = member.guild.channels.cache.get(channelId)
         channel.send(message)
     })
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f7d57d4f79b5a84419d27e76b3b2ac40fb012cf4
