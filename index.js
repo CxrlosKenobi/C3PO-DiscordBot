@@ -12,7 +12,7 @@ client.on('ready', async () => {
     console.log('The client is ready!')
     welcome(client)
     roleClaim(client)
-    
+
     const baseFile = 'command-base.js'
     const commandBase = require(`./commands/${baseFile}`)
 
@@ -29,6 +29,14 @@ client.on('ready', async () => {
         }
     }
     readCommands('commands')
+
+    client.user.setPresence({
+        activity: {
+            name: 'RAS UdeC',
+            type: 0,
+        },
+    })
+
 })
 
 client.login(config.token)
