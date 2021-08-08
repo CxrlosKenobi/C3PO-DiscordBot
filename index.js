@@ -7,19 +7,12 @@ const roleClaim = require('./role-claim')
 const welcome = require('./welcome')
 const mongo = require('./mongo')
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('The client is ready!')
     welcome(client)
     roleClaim(client)
 
-    await mongo().then((mongoose) => {
-        try {
-            console.log('Connected to mongo!')
-        } finally {
-            mongoose.connection.close()
-        }
-    })
-
+    
     command(client, ['ping', 'TestingBot'], (message) => {
         message.channel.send('Pong!')
     })
@@ -54,7 +47,15 @@ client.on('ready', () => {
                 type: 0,
             },
         })
-
+        
+    })
+    
+    await mongo().then((mongoose) => {
+        try {
+            console.log('Connected to mongo!')
+        } finally {
+            mongoose.connection.close()
+        }
     })
 })
 
