@@ -1,62 +1,34 @@
-const Discord = require('discord.js')
-const client = new Discord.Client()
-
 const config = require('./config.json')
-const command = require('./command')
+const path = require('path')
+const fs = require('fs')
 const roleClaim = require('./role-claim')
 const welcome = require('./welcome')
-const mongo = require('./mongo')
+// const mongo = require('./mongo')
+
+const Discord = require('discord.js')
+const client = new Discord.Client()
 
 client.on('ready', async () => {
     console.log('The client is ready!')
     welcome(client)
     roleClaim(client)
-
     
-    command(client, ['ping', 'TestingBot'], (message) => {
-        message.channel.send('Pong!')
-    })
+    const baseFile = 'command-base.js'
+    const commandBase = require(`./commands/${baseFile}`)
 
-    command(client, ['cc', 'clearChannel'], (message) => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.messages.fetch().then((results) => {
-                message.channel.bulkDelete(results)
-            })
+    const readCommands = (dir) => {
+        const files = fs.readdirSync(path.join(__dirname, dir))
+        for (const file of files) {
+            const stat = fs.lstatSync(path.join(__dirname, dir, file))
+            if (stat.isDirectory()) {
+                readCommands(path.join(dir, file))
+            } else if (file !== baseFile) {
+                const option = require(path.join(__dirname, dir, file))
+                commandBase(client, option)
+            }
         }
-    })
-
-    command(client, 'embed', (message) => {
-        // const logo = ''
-        const embed = new Discord.MessageEmbed()
-            .setTitle('Embed Test')
-            .setDescription('This is a test embed!')
-            .setColor(0x00ff00)
-            .setAuthor(message.author.username)
-            // .setImage(logo)
-            .setFooter('This is a footer!')
-        
-        message.channel.send(embed)
-    })
-
-    command(client, ['status'], message => {
-        const content = message.content.replace('%status ', '')
-
-        client.user.setPresence({
-            activity: {
-                name: content,
-                type: 0,
-            },
-        })
-        
-    })
-    
-    await mongo().then((mongoose) => {
-        try {
-            console.log('Connected to mongo!')
-        } finally {
-            mongoose.connection.close()
-        }
-    })
+    }
+    readCommands('commands')
 })
 
 client.login(config.token)

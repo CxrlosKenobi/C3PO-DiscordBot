@@ -3,8 +3,8 @@ const firstMessage = require('./first-message')
 module.exports = (client) => {
     const channelId = '871778181265367072'
 
-    const getEmoji = emojiName => 
-        client.emojis.cache.find(emoji => emoji.name === emojiName)
+    const getEmoji = (emojiName) => 
+        client.emojis.cache.find((emoji) => emoji.name === emojiName)
 
     const emojis = {
         robotMicrosoft: 'Robot!',
@@ -36,8 +36,8 @@ module.exports = (client) => {
             return
         }
 
-        const role = guild.roles.cache.find(role => role.name === roleName)
-        const member = guild.members.cache.find(member => member.id === user.id)
+        const role = guild.roles.cache.find((role) => role.name === roleName)
+        const member = guild.members.cache.find((member) => member.id === user.id)
         
         if (add){
             member.roles.add(role)
