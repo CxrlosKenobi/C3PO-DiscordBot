@@ -1,5 +1,6 @@
 module.exports = {
     commands: 'status',
+    description: 'Set a presence status',
     permissionError: 'Uh Oh! You need admin permissions to run this command',
     minArgs: 1,
     // maxArgs: [],

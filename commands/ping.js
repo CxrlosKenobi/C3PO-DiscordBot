@@ -1,8 +1,8 @@
 module.exports = {
     commands: ['ping'],
+    description: 'Plays table tennis!',
     minArgs: 0,
     maxArgs: 0,
-    description: 'Plays table tennis!',
     callback: (message, arguments, text) => {
       message.reply('Pong!')
     },
