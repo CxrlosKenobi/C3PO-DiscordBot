@@ -1,3 +1,4 @@
+const Discord = require('discord.js')
 const firstMessage = require('./first-message')
 
 module.exports = (client) => {
@@ -11,18 +12,19 @@ module.exports = (client) => {
     }
 
     const reactions = []
-
-    let emojiText = 'Add a reaction to claim a role\n\n'
+    
     for (const key in emojis) {
         const emoji = getEmoji(key)
         reactions.push(emoji)
-
+        
         const role = emojis[key]
-        emojiText += `${emoji} = ${role}\n`
+        // emojiText += `${emoji} = ${role}\n`
     }
     
-    firstMessage(client, channelId, emojiText, reactions)
+    let emojiText = 'Oh! Mis circuitos se alegran de verte aquí.\nSoy C-3PO. Un androide de protocolo, diseñado para el servicio de los humanos.\n\nPara cualquier duda o inquietud el rol de **staff** pertenece a la directiva de RAS, quienes estarán ansiosos por ayudarte.\n\nReacciona al mensaje para comenzar ✅'
 
+    firstMessage(client, channelId, emojiText, reactions)
+    
     const handleReaction = (reaction, user, add) => {
         if (user.id === '871849675488108595'){
             return
