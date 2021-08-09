@@ -1,6 +1,7 @@
 module.exports = {
     commands: ['add', 'addition'],
     expectedArgs: '<num1> <num2>',
+    description: 'Add two numbers',
     permissionError: 'Uh Oh! You need admin permissions to run this command',
     minArgs: 2,
     maxArgs: 2,
