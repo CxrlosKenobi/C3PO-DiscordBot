@@ -32,7 +32,7 @@ module.exports = (client) => {
 
         const emoji = reaction._emoji.name
         const { guild } = reaction.message
-        const roleName = 'Miembrx RAS'
+        const roleName = 'Miembrx'
 
         if (!roleName){
             return
